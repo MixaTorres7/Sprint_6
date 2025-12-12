@@ -57,12 +57,11 @@ class RentFormPage(BasePage):
         success_element = self.find_element(self.locators.SUCCESS_TEXT)
         return success_element.is_displayed()
     
-    def fill_second_form(self, period="сутки", comment=""):
+    def fill_second_form(self, period="сутки", comment="нет комментария"):
         """Заполнить всю вторую форму"""
         self.select_date()
         self.select_rental_period(period)
         self.select_black_color()
-        if comment:
-            self.fill_comment(comment)
+        self.fill_comment(comment)  # Всегда заполняем, даже если пустая строка
         self.click_order_button()
         self.confirm_order()
